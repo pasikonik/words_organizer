@@ -19,7 +19,7 @@ defmodule ListProcessor do
         File.write(new_list_path, ready_list)
      end)
 
-    IO.puts "created #{file_amount} lists"
+    file_amount
   end
 
   defp prepare_line(line) do
@@ -48,4 +48,7 @@ defmodule ListProcessor do
   end
 end
 
-ListProcessor.standart_list("list.csv")
+start = :os.system_time(:millisecond)
+amount = ListProcessor.standart_list("list.csv")
+stop = :os.system_time(:millisecond)
+IO.puts("created #{amount} lists in #{stop - start}ms")
