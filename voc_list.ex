@@ -5,7 +5,7 @@ defmodule ListProcessor do
   def standart_list(file_path) do
     new_list = get_path(file_path)
       |> File.read!
-      |> String.split(~r{\r\n|\r|\n})
+      |> String.split(~r{\r\n|\r|\n}, trim: true)
       |> Enum.map(fn line -> prepare_line(line) end)
 
     file_amount = round(Float.ceil(length(new_list) / @max_lines))
@@ -39,7 +39,7 @@ defmodule ListProcessor do
       ["polski", "angielski"] ->
         Enum.reverse(pair)
       _ ->
-        raise 'unsupported languages'
+        raise "unsupported languages"
     end
   end
 
